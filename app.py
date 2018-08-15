@@ -29,9 +29,6 @@ def help(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text="Commands:\n /start - Get welcome message \n /link - Get nearest LINK ATMs \n /banelco - Get nearest BANELCO ATMs \n ""\n This bot only shows the 3 nearest ATMs within 500metre radius \n ""\n This bot requieres access to your location" )
 
 
-def echo(bot, update):
-    update.effective_message.reply_text(update.effective_message.text)
-
 def error(bot, update, error):
     logger.warning('Update "%s" caused error "%s"', update, error)
 
@@ -87,11 +84,11 @@ if __name__ == "__main__":
     dp = updater.dispatcher
     # Add handlers
     dp.add_handler(CommandHandler('start', start))
-    dp.add_handler(MessageHandler(Filters.text, echo))
     dp.add_error_handler(error)
 
     dp.add_handler(CommandHandler('link', link_atms, pass_chat_data=True))
     dp.add_handler(CommandHandler('banelco', banelco_atms, pass_chat_data=True))
+    dp.add_handler(CommandHandler('help',help))
     dp.add_handler(MessageHandler(Filters.command, unknown))
     dp.add_handler(MessageHandler(Filters.location, parseLocation, pass_chat_data=True))
 
