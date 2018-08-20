@@ -18,7 +18,7 @@ def get_location(bot, update):
     location_keyboard = KeyboardButton(text="send location",  request_location=True)           #creating location button object
     custom_keyboard = [[ location_keyboard]] #creating keyboard object
     reply_markup = telegram.ReplyKeyboardMarkup(custom_keyboard, one_time_keyboard=True, resize_keyboard=True)                                                                                  
-    update.message.reply_text("This bot requires to know your location before continuing\n Please share it by pressing the button that will appear under your keyboard", reply_markup=reply_markup)
+    update.message.reply_text("This bot requires to know your location before continuing.\n*Please share it by pressing the button that will appear under your keyboard*", reply_markup=reply_markup)
 
 
 
